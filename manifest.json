@@ -1,0 +1,13 @@
+{
+  "deps": ["proxy3.py"],
+  "Author": "DeskChan Project <support@deskchan.info> (http://deskchan.info)",
+  "short-description": {
+    "ru": "Плагин запрашивает ссылку на тред Двача и скачивает все медиа-файлы и создаёт лог скачанного",
+    "en": "Plugin supports the user to download media files from the imageboard 2ch"
+  },
+  "name": {
+    "ru": "Двач веб-краулер",
+    "en": "2ch web-crawler"
+  },
+  "link": "in progress"
+}
