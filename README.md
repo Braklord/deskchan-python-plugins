@@ -9,7 +9,7 @@
 ### Features
 * You have a URL from a 2ch thread.
 * You put the URL from a 2ch thread into the script
-* The script uses a parser searching all media files of this thread
+* The script uses a parser searching all media files in this thread
 * The script writes all direct URLs into a *thread.txt* file
 * The script writes all files of the thread into a subfolder with a timestamp
 

@@ -7,7 +7,7 @@ import requests
 
 from bs4 import BeautifulSoup
 
-print("Bitte einen 2ch-Link eingeben: ")
+print("Please type your 2ch-URL: ")
 link = input()
 
 r = requests.get(link)
@@ -25,12 +25,18 @@ print(imgUrl)
 p = Path()
 print(p.resolve())
 # Unterordner images erstellen
-Path(str(p.resolve()) + "\images").mkdir(parents=False, exist_ok=True)
+Path(str(p.resolve()) + "/images").mkdir(parents=False, exist_ok=True)
+# os.makedirs("images", exist_ok = True)
+
+
 # Aktuellen Zeitstempel holen und als Namen für einen weiteren Unterordner verwenden
 datestamp = time.strftime("%d.%m.%Y %H-%M-%S")
-Path(str(p.resolve()) + "\images" + "\\" + datestamp).mkdir(parents=False, exist_ok=True)
+Path(str(p.resolve()) + "/images" + "//" + datestamp).mkdir(parents=False, exist_ok=True)
+# os.makedirs("images" + datestamp, exist_ok = True)
+# print(os.path.normpath("images"))
 
-with open("images/thread.txt", encoding="utf-8", mode="a+") as file:
+
+with open("images/thread.txt", encoding="utf-8", mode="w+") as file:
     file.write("----------------------------------------------------------" + "\n")
     file.write(time.strftime("%Y.%m.%d %H-%M-%S") + "\n")
     file.write("----------------------------------------------------------" + "\n")
@@ -40,3 +46,4 @@ with open("images/thread.txt", encoding="utf-8", mode="a+") as file:
         urllib.request.urlretrieve(element, "images/" + datestamp + "/" + str(element.split("/")[-1]))
         time.sleep(0.5)
     file.write("\n")
+
