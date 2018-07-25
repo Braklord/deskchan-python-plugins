@@ -1,4 +1,13 @@
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/Django.svg?style=for-the-badge)
+![DeskChan](https://img.shields.io/badge/DeskChan-Plugin-blue.svg)
+![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg?style=for-the-badge)
+![Travis (.org) branch](https://img.shields.io/travis/USER/REPO/BRANCH.svg?style=for-the-badge)
+![TeamCity CodeBetter](https://img.shields.io/teamcity/codebetter/bt428.svg?style=for-the-badge)
+
+
+
 ## Web-Crawler for the russian imageboard 2ch
+Python plugin for the project [DeskChan](https://github.com/DeskChan/DeskChan)
 
 ### Actually in progress
 - [x] Using the html-parser libraries, get the URLs of all media files in a thread
@@ -7,6 +16,7 @@
 - [ ] Adapt this script to the DeskChan project (proxy3.py)
 
 ### For future projects
+- [ ] Structured text extraction
 - [ ] Crawling for 4ch
 - [ ] Universal crawling of the imageboards
 - [ ] Tagging and sorting algorithms
