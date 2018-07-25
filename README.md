@@ -6,6 +6,11 @@
 - [x] Create subfolder with timestamp for each thread-URL
 - [ ] Adapt this script to the DeskChan project (proxy3.py)
 
+### For future projects
+- [ ] Crawling for 4ch
+- [ ] Universal crawling of the imageboards
+- [ ] Tagging and sorting algorithms
+
 ### Features
 * You have a URL from a 2ch thread.
 * You put the URL from a 2ch thread into the script
