@@ -1,8 +1,8 @@
-![PyPI - Python Version](https://img.shields.io/pypi/pyversions/Django.svg?style=for-the-badge)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/Django.svg)
 ![DeskChan](https://img.shields.io/badge/DeskChan-Plugin-blue.svg)
-![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg?style=for-the-badge)
-![Travis (.org) branch](https://img.shields.io/travis/USER/REPO/BRANCH.svg?style=for-the-badge)
-![TeamCity CodeBetter](https://img.shields.io/teamcity/codebetter/bt428.svg?style=for-the-badge)
+![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg)
+![Travis (.org) branch](https://img.shields.io/travis/USER/REPO/BRANCH.svg)
+![TeamCity CodeBetter](https://img.shields.io/teamcity/codebetter/bt428.svg)
 
 
 
