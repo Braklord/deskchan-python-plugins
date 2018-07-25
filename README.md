@@ -1,7 +1,6 @@
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/Django.svg)
 ![DeskChan](https://img.shields.io/badge/DeskChan-Plugin-blue.svg)
 ![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg)
-![Travis (.org) branch](https://img.shields.io/travis/USER/REPO/BRANCH.svg)
 ![TeamCity CodeBetter](https://img.shields.io/teamcity/codebetter/bt428.svg)
 
 
