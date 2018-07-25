@@ -1,4 +1,8 @@
 ## Web-Crawler for the russian imageboard 2ch (actually in progress)
+- [x] Using the html-parser libraries, get the URLs of all media files in a thread
+- [x] Write all URLs with a timestamp in a structured file
+- [x] Create subfolder with timestamp for each thread-URL
+- [ ] Adapt this script to the DeskChan project (proxy3.py)
 
 ### Needed Python libraries:
 * [__Requests: HTTP for Humans__](http://docs.python-requests.org/en/master/user/install/#install)
