@@ -1,8 +1,17 @@
-## Web-Crawler for the russian imageboard 2ch (actually in progress)
+## Web-Crawler for the russian imageboard 2ch
+
+### Actually in progress
 - [x] Using the html-parser libraries, get the URLs of all media files in a thread
 - [x] Write all URLs with a timestamp in a structured file
 - [x] Create subfolder with timestamp for each thread-URL
 - [ ] Adapt this script to the DeskChan project (proxy3.py)
+
+### Features
+* You have a URL from a 2ch thread.
+* You put the URL from a 2ch thread into the script
+* The script uses a parser searching all media files of this thread
+* The script writes all direct URLs into a *thread.txt* file
+* The script writes all files of the thread into a subfolder with a timestamp
 
 ### Needed Python libraries:
 * [__Requests: HTTP for Humans__](http://docs.python-requests.org/en/master/user/install/#install)
@@ -18,12 +27,12 @@ To update pip himself, type in your command prompt:
 python -m pip install --upgrade pip
 ```
 
-To download the *Requests*, type:
+To download the *Requests* library:
 ```
 pip install requests
 ```
 
-To download the *BeautifulSoup* library, type:
+To download the *BeautifulSoup* library:
 ```
 pip install beautifulsoup4
 ```
