@@ -2,6 +2,7 @@
 from pathlib import Path
 
 import urllib
+from urllib.error import URLError, HTTPError, ContentTooShortError
 import time
 import requests
 
@@ -36,14 +37,16 @@ Path(str(p.resolve()) + "/images" + "//" + datestamp).mkdir(parents=False, exist
 # print(os.path.normpath("images"))
 
 
-with open("images/thread.txt", encoding="utf-8", mode="w+") as file:
+with open("images/thread.txt", encoding="utf-8", mode="a+") as file:
     file.write("----------------------------------------------------------" + "\n")
     file.write(time.strftime("%Y.%m.%d %H-%M-%S") + "\n")
     file.write("----------------------------------------------------------" + "\n")
     for element in imgUrl:
         file.write(element + "\n")
+        try:
+            urllib.request.urlretrieve(element, "images/" + datestamp + "/" + str(element.split("/")[-1]))
+            time.sleep(0.5)
+        except ContentTooShortError:
+            print("Download interrupted")
 
-        urllib.request.urlretrieve(element, "images/" + datestamp + "/" + str(element.split("/")[-1]))
-        time.sleep(0.5)
     file.write("\n")
-
