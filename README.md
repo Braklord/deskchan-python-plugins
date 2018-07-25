@@ -10,13 +10,13 @@ If you don't get an error, your installation was successful.
 Notice you can also use the pip for automatic updates of the (also missing) libraries.
 
 To update pip himself, type in your command prompt:
-    'python -m pip install --upgrade pip'
+    python -m pip install --upgrade pip
 
 To download the *Requests*, type:
-    'pip install requests'
+    pip install requests
 
 To download the *BeautifulSoup* library, type:
-    'pip install beautifulsoup4'
+    pip install beautifulsoup4
 
 Now you should be ready for using this plugin.
 
