@@ -1,52 +1,90 @@
 # -*- coding: utf-8 -*-
 from pathlib import Path
-
 import urllib
 from urllib.error import URLError, HTTPError, ContentTooShortError
 import time
 import requests
-
 from bs4 import BeautifulSoup
 
-print("Please type your 2ch-URL: ")
-link = input()
+import sys
+if int(sys.version[0]) < 3:
+    from proxy2 import *
+else:
+    from proxy3 import *
 
-r = requests.get(link)
-# r = requests.get("https://2ch.hk/de/res/58444.html")
-doc = BeautifulSoup(r.text, "html.parser")
+set_logging(True)
+init()
 
-message = []
-imgUrl = []
-
-for post in doc.select(".file-attr"):
-    message.append(post.a["href"])
-    imgUrl.append("https://2ch.hk" + post.a["href"])
-
-print(imgUrl)
-p = Path()
-print(p.resolve())
-# Unterordner images erstellen
-Path(str(p.resolve()) + "/images").mkdir(parents=False, exist_ok=True)
-# os.makedirs("images", exist_ok = True)
+checkFirstRun = True
+url = ""
 
 
-# Aktuellen Zeitstempel holen und als Namen für einen weiteren Unterordner verwenden
-datestamp = time.strftime("%d.%m.%Y %H-%M-%S")
-Path(str(p.resolve()) + "/images" + "//" + datestamp).mkdir(parents=False, exist_ok=True)
-# os.makedirs("images" + datestamp, exist_ok = True)
-# print(os.path.normpath("images"))
+sendMessage("core:add-command", {"tag": "crawler:2ch", "info": "плагин для скачивания медиа-файлов с двачей"})
+
+def crawler_2ch(sender, data):
+    log_warn("inside function crawler_2ch now")
+    global checkFirstRun
+    global url
 
 
-with open("images/thread.txt", encoding="utf-8", mode="a+") as file:
-    file.write("----------------------------------------------------------" + "\n")
-    file.write(time.strftime("%Y.%m.%d %H-%M-%S") + "\n")
-    file.write("----------------------------------------------------------" + "\n")
-    for element in imgUrl:
-        file.write(element + "\n")
-        try:
-            urllib.request.urlretrieve(element, "images/" + datestamp + "/" + str(element.split("/")[-1]))
-            time.sleep(0.5)
-        except ContentTooShortError:
-            print("Download interrupted")
+    if checkFirstRun:
+        checkFirstRun = False
+        sendMessage("DeskChan:say", {"text": "{user}, дай ссылку треда и я тебе всё-всё скачаю в /plugins/crawler2ch/",
+                                     "skippable": False})
+    else:
+        #link = input()
+        url = data["value"]
+        log(data["value"])
 
-    file.write("\n")
+        r = requests.get(url)
+        doc = BeautifulSoup(r.text, "html.parser")
+
+        message = []
+        imgUrl = []
+
+        for post in doc.select(".file-attr"):
+            message.append(post.a["href"])
+            imgUrl.append("https://2ch.hk" + post.a["href"])
+
+        p = Path()
+        # Create subfolder "images"
+        Path(str(p.resolve()) + "/images").mkdir(parents=False, exist_ok=True)
+
+        # Get actual timestamp which will be the name of the subfolder
+        datestamp = time.strftime("%Y.%m.%d %H-%M-%S")
+        Path(str(p.resolve()) + "/images" + "//" + datestamp).mkdir(parents=False, exist_ok=True)
+
+        with open("images/thread.txt", encoding="utf-8", mode="a+") as file:
+            sendMessage("gui:set-image", "happy")
+            sendMessage("DeskChan:say", {"text": "Поиск файлов... Всё, начала скачивать."})
+            file.write("----------------------------------------------------------" + "\n")
+            file.write(time.strftime("%Y.%m.%d %H-%M-%S") + "\n")
+            file.write("----------------------------------------------------------" + "\n")
+            for element in imgUrl:
+                file.write(element + "\n")
+                try:
+                    urllib.request.urlretrieve(element, "images/" + datestamp + "/" + str(element.split("/")[-1]))
+                    # delay against a possible ip ban
+                    time.sleep(0.3)
+                except ContentTooShortError:
+                    log("Download interrupted")
+                    sendMessage("gui:set-image", "confusion")
+                    sendMessage("DeskChan:say",
+                                {"text": "{user}, тут ошибочка вышла, не всё скачалось. Попробуй ещё раз."})
+            file.write("\n")
+            sendMessage("gui:set-image", "happy")
+            sendMessage("DeskChan:say", {"text": "Всё скачала, я хорошая, да?"})
+            checkFirstRun = True
+            return
+
+    sendMessage("DeskChan:request-user-speech", None, crawler_2ch)
+
+
+addMessageListener("crawler:2ch", crawler_2ch)
+
+#Linking of command and event
+sendMessage("core:set-event-link", {"eventName": "speech:get", "commandName": "crawler:2ch", "rule": "двач скачать"})
+#sendMessage("core:set-event-link", {"eventName": "speech:get", "commandName": "crawler:2ch", "rule": "2ch download"})
+#sendMessage("core:set-event-link", {"eventName": "speech:get", "commandName": "cities:play", "rule": "игра городки"})
+
+end_init()
