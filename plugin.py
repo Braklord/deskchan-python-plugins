@@ -31,7 +31,7 @@ def crawler_2ch(sender, data):
         sendMessage("DeskChan:say", {"text": "{user}, дай ссылку треда и я тебе всё-всё скачаю в /plugins/crawler2ch/",
                                      "skippable": False})
     else:
-        if "value" in data or data["value"] is not None:
+        if data["value"][0:14] == "https://2ch.hk" and len(data["value"]) > 28:
             url = data["value"]
         else:
             sendMessage("DeskChan:say", {"text": "Что-то непохоже это на ссылку..."})
