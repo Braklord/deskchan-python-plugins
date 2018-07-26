@@ -26,18 +26,26 @@ def crawler_2ch(sender, data):
     global checkFirstRun
     global url
 
-
     if checkFirstRun:
         checkFirstRun = False
         sendMessage("DeskChan:say", {"text": "{user}, дай ссылку треда и я тебе всё-всё скачаю в /plugins/crawler2ch/",
                                      "skippable": False})
     else:
-        #link = input()
-        url = data["value"]
-        log(data["value"])
+        if "value" in data or data["value"] is not None:
+            url = data["value"]
+        else:
+            sendMessage("DeskChan:say", {"text": "Что-то непохоже это на ссылку..."})
+            log_warn("URL Error exception, Invalid URL")
+            return
 
-        r = requests.get(url)
-        doc = BeautifulSoup(r.text, "html.parser")
+        try:
+            r = requests.get(url)
+            doc = BeautifulSoup(r.text, "html.parser")
+        except URLError:
+            sendMessage("DeskChan:say", {"text": "Что-то непохоже это на ссылку..."})
+            log_warn("URL Error exception, Invalid URL")
+            return
+
 
         message = []
         imgUrl = []
