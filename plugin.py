@@ -97,10 +97,6 @@ sendMessage("core:set-event-link", {"eventName": "speech:get", "commandName": "c
 setConfigField("dependencies", "python3")
 setConfigField("author", "DeskChan Project <support@deskchan.info> (http://deskchan.info)")
 setConfigField("short-description", {
-                   "ru": "ДескЧан плагин: Краулер Двача",
-                   "en": "DeskChan plagin: crawler 2ch"
-               })
-setConfigField("description", {
                    "ru": "Плагин запрашивает ссылку на тред Двача и скачивает все медиа-файлы и создаёт лог скачанного",
                    "en": "Plugin supports the user to download media files from the imageboard 2ch"
                })
