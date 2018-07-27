@@ -92,7 +92,21 @@ addMessageListener("crawler:2ch", crawler_2ch)
 
 #Linking of command and event
 sendMessage("core:set-event-link", {"eventName": "speech:get", "commandName": "crawler:2ch", "rule": "двач скачать"})
-#sendMessage("core:set-event-link", {"eventName": "speech:get", "commandName": "crawler:2ch", "rule": "2ch download"})
-#sendMessage("core:set-event-link", {"eventName": "speech:get", "commandName": "cities:play", "rule": "игра городки"})
+
+# plugin informations
+setConfigField("dependencies", "python3")
+setConfigField("author", "DeskChan Project <support@deskchan.info> (http://deskchan.info)")
+setConfigField("short-description", {
+                   "ru": "ДескЧан плагин: Краулер Двача",
+                   "en": "DeskChan plagin: crawler 2ch"
+               })
+setConfigField("name", {
+                   "ru": "Краулер 2ch",
+                   "en": "Crawler 2ch"
+               })
+setConfigField("link", "https://forum.deskchan.info/topic/129/python-crawler2ch-krauler-dvacha")
+setConfigField("version", "1.0")
+
+
 
 end_init()
