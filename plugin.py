@@ -4,6 +4,7 @@ import urllib
 from urllib.error import URLError, HTTPError, ContentTooShortError
 import time
 import requests
+import os
 from bs4 import BeautifulSoup
 
 import sys
@@ -28,6 +29,7 @@ def crawler_2ch(sender, data):
 
     if checkFirstRun:
         checkFirstRun = False
+        # Hier die Option {user} aus Optionen extrahieren
         sendMessage("DeskChan:say", {"text": "{user}, дай ссылку треда и я тебе всё-всё скачаю в /plugins/crawler2ch/",
                                      "skippable": False})
     else:
@@ -36,6 +38,7 @@ def crawler_2ch(sender, data):
         else:
             sendMessage("DeskChan:say", {"text": "Что-то непохоже это на ссылку..."})
             log_warn("URL Error exception, Invalid URL")
+            checkFirstRun = True
             return
 
         try:
@@ -56,13 +59,19 @@ def crawler_2ch(sender, data):
 
         p = Path()
         # Create subfolder "images"
-        Path(str(p.resolve()) + "/images").mkdir(parents=False, exist_ok=True)
+        #Path(str(p.resolve()) + "/images").mkdir(parents=False, exist_ok=True)
+        if os.path.isdir(os.path.join(os.path.dirname(__file__), "images")):
+            pass
+        else:
+            Path(str(os.path.join(os.path.dirname(__file__), "images"))).mkdir(parents=False, exist_ok=True)
 
         # Get actual timestamp which will be the name of the subfolder
         datestamp = time.strftime("%Y.%m.%d %H-%M-%S")
-        Path(str(p.resolve()) + "/images" + "//" + datestamp).mkdir(parents=False, exist_ok=True)
+        #Path(str(p.resolve()) + "/images" + "//" + datestamp).mkdir(parents=False, exist_ok=True)
+        Path(str(os.path.join(os.path.dirname(__file__), "images", str(datestamp)))).mkdir(parents=False, exist_ok=True)
 
-        with open("images/thread.txt", encoding="utf-8", mode="a+") as file:
+        #with open("images/thread.txt", encoding="utf-8", mode="a+") as file:
+        with open(str(os.path.join(os.path.dirname(__file__), "images", "thread.txt")), encoding="utf-8", mode="a+") as file:
             sendMessage("gui:set-image", "happy")
             sendMessage("DeskChan:say", {"text": "Поиск файлов... Всё, начала скачивать."})
             file.write("----------------------------------------------------------" + "\n")
