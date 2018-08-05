@@ -114,7 +114,7 @@ setConfigField("name", {
                    "en": "Crawler 2ch"
                })
 setConfigField("link", "https://forum.deskchan.info/topic/129/python-crawler2ch-krauler-dvacha")
-setConfigField("version", "1.0")
+setConfigField("version", "1.1")
 
 
 
