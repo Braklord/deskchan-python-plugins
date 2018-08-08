@@ -19,6 +19,13 @@ init()
 checkFirstRun = True
 url = ""
 
+def get_username(sender, data):
+    log("got preset: " + str(data["tags"]["usernames"]))
+    #log_warn(str(data["tags"]["usernames"]))
+    #return data["tags"]["usernames"][random.randint(0, len(data["tags"]["usernames"])-1)]
+    return data["tags"]["usernames"]
+    #return ["Testdata1", "Testdata2"]
+    #return "Suka"
 
 sendMessage("core:add-command", {"tag": "crawler:2ch", "info": "плагин для скачивания медиа-файлов с двачей"})
 
@@ -26,6 +33,11 @@ def crawler_2ch(sender, data):
     log_warn("inside function crawler_2ch now")
     global checkFirstRun
     global url
+
+
+    # get the {user} names out of the global settings
+    userNames = sendMessage("talk:get-preset", None, get_username)
+    log_warn("got usernames: " + str(userNames))
 
     if checkFirstRun:
         checkFirstRun = False
@@ -103,7 +115,8 @@ addMessageListener("crawler:2ch", crawler_2ch)
 sendMessage("core:set-event-link", {"eventName": "speech:get", "commandName": "crawler:2ch", "rule": "двач скачать"})
 
 # plugin informations
-setConfigField("dependencies", "python3")
+setConfigField("dependencies", "python 3")
+setConfigField("python-dependencies", "requests, beautifulSoup4")
 setConfigField("author", "DeskChan Project <support@deskchan.info> (http://deskchan.info)")
 setConfigField("short-description", {
                    "ru": "Плагин запрашивает ссылку на тред Двача и скачивает все медиа-файлы и создаёт лог скачанного",

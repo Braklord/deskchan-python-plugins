@@ -37,6 +37,7 @@ While the installation process you have to "*add Python 3.x to PATH*". After the
 If you don't get an error, your installation was successful.
 Notice you can also use the pip for automatic updates of the (also missing) libraries.
 
+#### Possibility Nr. 1
 To update pip himself, type in your command prompt:
 ```
 python -m pip install --upgrade pip
@@ -53,4 +54,18 @@ pip install beautifulsoup4
 ```
 
 Now you should be ready for using this plugin.
+
+#### Possibility Nr. 2
+The alternative possibility is to use the prepared *requirements.txt* file.
+Type in the plugin directory in your command prompt:
+```
+pip install -r requirements-to-freeze.txt --upgrade
+```
+
+And then:
+```
+pip freeze > requirements.txt
+```
+
+
 
