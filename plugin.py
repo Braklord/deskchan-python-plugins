@@ -21,11 +21,8 @@ url = ""
 
 def get_username(sender, data):
     log("got preset: " + str(data["tags"]["usernames"]))
-    #log_warn(str(data["tags"]["usernames"]))
-    #return data["tags"]["usernames"][random.randint(0, len(data["tags"]["usernames"])-1)]
     return data["tags"]["usernames"]
-    #return ["Testdata1", "Testdata2"]
-    #return "Suka"
+
 
 sendMessage("core:add-command", {"tag": "crawler:2ch", "info": "плагин для скачивания медиа-файлов с двачей"})
 
