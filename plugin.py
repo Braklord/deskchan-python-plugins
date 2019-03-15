@@ -62,7 +62,8 @@ def crawler_2ch(sender, data):
         message = []
         imgUrl = []
 
-        for post in doc.select(".file-attr"):
+        #for post in doc.select(".file-attr"):
+        for post in doc.select(".post__file-attr"):
             message.append(post.a["href"])
             imgUrl.append("https://2ch.hk" + post.a["href"])
 
