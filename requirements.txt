@@ -10,7 +10,7 @@ Jinja2==2.10
 kiwisolver==1.0.1
 MarkupSafe==1.0
 matplotlib==2.2.2
-numpy==1.15.0
+numpy==1.22.0
 opencv-python==3.4.2.17
 pygame==1.9.4
 pyparsing==2.2.0
